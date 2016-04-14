@@ -53,9 +53,9 @@ def tirer(jeu):
 
 
 
-def bataille(carte1, carte2, reste):
+def bataille(carte1, carte2, reste, nombre_de_batailles):
     print("BATAILLE !!!")
-
+    nombre_de_batailles += 1
 
     #print(carte1, "vs", carte2)
     # On ajoute au reste les 2 cartes egales :
@@ -93,7 +93,7 @@ def bataille(carte1, carte2, reste):
 
     if len(jeu1) != 0 and len(jeu2) != 0:
         if carte1[0] == carte2[0]:
-                bataille(carte1, carte2, reste)
+                bataille(carte1, carte2, reste, nombre_de_batailles)
         
         elif carte1[0] > carte2[0]:
             for k in range(len(reste)):
@@ -127,7 +127,7 @@ def partie():
         #print(jeu2)
         print("nb de cartes du joueur 1 :", len(jeu1))
         print("nb de cartes du joueur 2 :", len(jeu2))
-    # On tire les cartes et on sort de la boucle infinie si c'est impossible (un des joueurs perdant):
+        # On tire 2 cartes !
         carte1 = tirer(jeu1)
         carte2 = tirer(jeu2)
 
@@ -143,11 +143,9 @@ def partie():
             jeu2.append(carte2)
             print(carte1, "vs", carte2)
             print("le joueur 2 gagne !")
-        # Si Ã©galitÃ© on appel le fonction bataille() :
-
+        # Si egalite on appel le fonction bataille() :
         else:
-            bataille(carte1, carte2, reste)
-            nombre_de_batailles += 1
+            bataille(carte1, carte2, reste, nombre_de_batailles)
             reste = []
         nombre_de_tours += 1
         print(nombre_de_tours, "eme tour")
