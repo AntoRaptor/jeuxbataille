@@ -91,20 +91,30 @@ def bataille(carte1, carte2, reste):
         print("Le joueur 1 remporte la partie !")
         input()
 
-    if carte1[0] == carte2[0]:
-        bataille(carte1, carte2, reste)
+    if len(jeu1) != 0 and len(jeu2) != 0:
+        if carte1[0] == carte2[0]:
+                bataille(carte1, carte2, reste)
+        
+        elif carte1[0] > carte2[0]:
+            for k in range(len(reste)):
+                jeu1.append(reste[k])
+            jeu1.append(carte1)
+            jeu1.append(carte2)
+        
+        else:
+            for l in range(len(reste)):
+                jeu2.append(reste[l])
+            jeu2.append(carte1)
+            jeu2.append(carte2)
 
-    elif carte1[0] > carte2[0]:
-        for k in range(len(reste)):
-            jeu1.append(reste[k])
-        jeu1.append(carte1)
-        jeu1.append(carte2)
+    elif len(jeu1) == 0:
+        print("Le joueur 2 remporte la partie !")
+        input()
 
     else:
-        for l in range(len(reste)):
-            jeu2.append(reste[l])
-        jeu2.append(carte1)
-        jeu2.append(carte2)
+        print("Le joueur 1 remporte la partie !")
+        input()
+
 
 
 def partie():
@@ -151,9 +161,9 @@ def partie():
 """Programme principale"""
 jeu = creation()
 
-jeu = melanger(jeu)
-jeu1 = distribuerj1(jeu)
-jeu2 = distribuerj2(jeu)
+#jeu = melanger(jeu)
+jeu1 = [(3, 2), (5, 3), (6, 3) , (14, 2), (12, 2), (14, 1)]
+jeu2 = [(3, 3), (5, 2), (6, 1) , (13, 1), (11, 3), (13, 2)]
 partie()
 
 
