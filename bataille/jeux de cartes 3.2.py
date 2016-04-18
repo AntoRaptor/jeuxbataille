@@ -45,9 +45,9 @@ def distribuerj2(liste):
 
 
 def tirer(jeu):
-    a = jeu[0]
+    carte = jeu[0]
     jeu.remove(jeu[0])
-    return a
+    return carte
 
 
 
