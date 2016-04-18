@@ -2,7 +2,7 @@ from random import *
 
 
 """Definition"""
-#tes
+
 
 def creation():
     jeu = []
@@ -159,9 +159,11 @@ def partie():
 """Programme principale"""
 jeu = creation()
 
-#jeu = melanger(jeu)
-jeu1 = [(3, 2), (5, 3), (6, 3) , (14, 2), (12, 2), (14, 1)]
-jeu2 = [(3, 3), (5, 2), (6, 1) , (13, 1), (11, 3), (13, 2)]
+jeu = melanger(jeu)
+#jeutest1 = [(3, 2), (5, 3), (6, 3) , (14, 2), (12, 2), (14, 1)]
+#jeutest2 = [(3, 3), (5, 2), (6, 1) , (13, 1), (11, 3), (13, 2)]
+jeu1 = distribuerj1(jeu)
+jeu2 = distribuerj2(jeu)
 partie()
 
 
