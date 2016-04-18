@@ -5,7 +5,7 @@ from random import *
 
 
 def creation():
-    jeu_trie = []
+    jeu = []
     # creations des differentes variables :
 
     couleurs = ["Coeur", "Carreau", "Trefle", "Pique"]          # liste des couleurs auxquelles peut appartenir une carte.
@@ -19,19 +19,19 @@ def creation():
         for v in valeurs:
             #if v in traduction:  # si v est une valeur a traduire (si c'est une clef de 'traduction' -> 11, 12, 13, 14).
                 #v = traduction[v]   # alors on remplace la clef pas sa valeur correspondante -> Valet, Dame, Roi, As.
-            jeu_trie.append((v, c))      # on ajoute un tuple qui represente une carte ayant 2 parametres : valeur et couleur.
+            jeu.append((v, c))      # on ajoute un tuple qui represente une carte ayant 2 parametres : valeur et couleur.
 
     """jeu = [(x, y) for y in couleurs for x in valeurs]"""
-    return jeu_trie
+    return jeu
 
 def melanger(liste):
     """Fonction qui prend un jeu de cartes et le melange"""
-    liste2 = []
+    listeMelangee = []
     while len(liste) != 0:
         carte = choice(liste)
-        liste2.append(carte)
+        listeMelangee.append(carte)
         liste.remove(carte)
-    return liste2
+    return listeMelangee
 
 
 def distribuerj1(liste):
