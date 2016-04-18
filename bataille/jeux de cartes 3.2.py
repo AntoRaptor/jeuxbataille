@@ -2,7 +2,7 @@ from random import *
 
 
 """Definition"""
-#tes
+#test
 
 def creation():
     jeu = []
