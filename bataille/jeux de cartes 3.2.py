@@ -160,8 +160,8 @@ def partie():
 jeu = creation()
 
 jeu = melanger(jeu)
-#jeutest1 = [(3, 2), (5, 3), (6, 3) , (14, 2), (12, 2), (14, 1)]
-#jeutest2 = [(3, 3), (5, 2), (6, 1) , (13, 1), (11, 3), (13, 2)]
+#jeutest1 = [(3), (5), (6) , (14), (12), (14)]
+#jeutest2 = [(3), (5), (6) , (13), (11), (13)]
 jeu1 = distribuerj1(jeu)
 jeu2 = distribuerj2(jeu)
 partie()
