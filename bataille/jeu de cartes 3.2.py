@@ -104,8 +104,8 @@ def bataille(carte1, carte2, reste, nombre_de_batailles):
         else:
             for l in range(len(reste)):
                 jeu2.append(reste[l])
-            jeu2.append(carte1)
             jeu2.append(carte2)
+            jeu2.append(carte1)
 
     elif len(jeu1) == 0:
         print("Le joueur 2 remporte la partie !")
@@ -139,8 +139,8 @@ def partie():
             print(carte1, "vs", carte2)
             print("le joueur 1 gagne !")
         elif carte2[0] > carte1[0]:
-            jeu2.append(carte1)
             jeu2.append(carte2)
+            jeu2.append(carte1)
             print(carte1, "vs", carte2)
             print("le joueur 2 gagne !")
         # Si egalite on appel le fonction bataille() :
