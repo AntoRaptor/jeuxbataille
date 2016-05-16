@@ -53,9 +53,9 @@ def tirer(jeu):
 
 
 
-def bataille(carte1, carte2, reste, nombre_de_batailles):
+def bataille(carte1, carte2, reste, nombre_de_batailles, enchainement):
     print("BATAILLE !!!")
-    nombre_de_batailles += 1
+    
 
     #print(carte1, "vs", carte2)
     # On ajoute au reste les 2 cartes egales :
@@ -93,7 +93,8 @@ def bataille(carte1, carte2, reste, nombre_de_batailles):
 
     if len(jeu1) != 0 and len(jeu2) != 0:
         if carte1[0] == carte2[0]:
-                bataille(carte1, carte2, reste, nombre_de_batailles)
+                enchainement += 1
+                bataille(carte1, carte2, reste, nombre_de_batailles, enchainement)
         
         elif carte1[0] > carte2[0]:
             for k in range(len(reste)):
@@ -121,6 +122,7 @@ def partie():
     reste = []
     nombre_de_tours = 0
     nombre_de_batailles = 0
+    enchainement = 0
     # Tant qu'il reste des cartes :
     while len(jeu1) != 0 and len(jeu2) != 0:
         #print(jeu1)
@@ -145,7 +147,9 @@ def partie():
             print("le joueur 2 gagne !")
         # Si egalite on appel le fonction bataille() :
         else:
-            bataille(carte1, carte2, reste, nombre_de_batailles)
+            nombre_de_batailles += 1
+            bataille(carte1, carte2, reste, nombre_de_batailles, enchainement)
+            nombre_de_bataille  = nombre_de_batailles + enchainement
             reste = []
         nombre_de_tours += 1
         print(nombre_de_tours, "eme tour")
@@ -160,10 +164,10 @@ def partie():
 jeu = creation()
 
 jeu = melanger(jeu)
-#jeutest1 = [(3), (5), (6) , (14), (12), (14)]
-#jeutest2 = [(3), (5), (6) , (13), (11), (13)]
-jeu1 = distribuerj1(jeu)
-jeu2 = distribuerj2(jeu)
+jeu1 = [(3, 0), (5, 0), (6, 0) ,(6, 0), (6, 0), (6, 0),  (14, 0), (12, 0), (14, 1)]
+jeu2 = [(3, 1), (5, 1), (6, 1) , (6, 0), (6, 0), (6, 0), (6, 0), (11, 1), (13, 0)]
+#jeu1 = distribuerj1(jeu)
+#jeu2 = distribuerj2(jeu)
 partie()
 
 
