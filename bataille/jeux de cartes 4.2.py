@@ -1,15 +1,9 @@
 # Importation
 
-
 from random import *
-
 from tkinter import *
 
-
-
-
 # Definition des fonctions
-
 
 def creation():
     jeu = []
@@ -19,7 +13,6 @@ def creation():
     valeurs = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]       #liste des valeurs que peut prendre une carte.
     traduction = {11: "Valet", 12: "Dame", 13: "Roi", 14: "As"}  #dictionnaire pour la traduction.
 
-
     """ Creation du jeu """
 
     for c in couleurs:
@@ -28,26 +21,24 @@ def creation():
             #v = traduction[v]   # alors on remplace la clef pas sa valeur correspondante -> Valet, Dame, Roi, As.
             jeu.append((v, c))     # on ajoute un tuple qui represente une carte ayant 2 parametres : valeur et couleur.
 
-    """jeu = [(x, y) for y in couleurs for x in valeurs]"""
+    #jeu = [(x, y) for y in couleurs for x in valeurs]
+
     return jeu
 
 
 
-
-
 def melanger(liste):
+
     """Fonction qui prend un jeu de cartes et le melange"""
+
     listeMelangee = []
+
     while len(liste) != 0:
-        
         carte = choice(liste)
         listeMelangee.append(carte)
         liste.remove(carte)
+
     return listeMelangee
-
-
-
-
 
 
 
@@ -58,14 +49,11 @@ def tirer(liste):
 
 
 
-
-
-
 def initialisation_partie():
     jeu = creation()
     jeu = melanger(jeu)
-    """#jeutest1 = [(3), (5), (6) , (14), (12), (14)]
-    #jeutest2 = [(3), (5), (6) , (13), (11), (13)]"""
+    #jeutest1 = [(3), (5), (6) , (14), (12), (14)]
+    #jeutest2 = [(3), (5), (6) , (13), (11), (13)]
     jeu1 = jeu[0:26]
     jeu2 = jeu[26:52]
     global jeu1,jeu2
@@ -73,19 +61,18 @@ def initialisation_partie():
 
 
 
-
-
-
-
 def bataille(jeu1, jeu2, carte1, carte2, reste, nombre_de_batailles):
-    """print("BATAILLE !!!")"""
+    #print("BATAILLE !!!")
     nombre_de_batailles += 1
 
-    """ #print(carte1, "vs", carte2)
-    # On ajoute au reste les 2 cartes egales :"""
+    #print(carte1, "vs", carte2)
+
+    """On ajoute au reste les 2 cartes egales :"""
+
     reste.append(carte1)
     reste.append(carte2)
-    """# On tire les 2 cartes intermediaires qu'on ajoute au reste :"""
+    """On tire les 2 cartes intermediaires qu'on ajoute au reste :"""
+
     if len(jeu1) != 0 and len(jeu2) != 0:
 
         carte_inter1 = tirer(jeu1)
@@ -142,12 +129,6 @@ def bataille(jeu1, jeu2, carte1, carte2, reste, nombre_de_batailles):
 
 
 
-
-
-
-
-
-
 def tirer_carte():
     global reste
     global nombre_de_tours
@@ -194,12 +175,6 @@ def tirer_carte():
     
 
 
-
-
-
-
-
-
 def partie():
     #jeu1,jeu2 = initialisation_partie()
     reste = []
@@ -218,11 +193,6 @@ def partie():
     """print("partie terminee en {0} tours avec {1} batailles".format(str(nombre_de_tours), str(nombre_de_batailles)))
     input()"""
     return gagnant
-
-
-
-
-
 
 
 
@@ -254,16 +224,13 @@ def jouer():
 
 
 launcher = Tk()
-
 launcher.title("Jeu de la bataille")
-
 
 
 bouton1 = Button(launcher,text = "Quitter",command = launcher.destroy)
 bouton_jouer = Button(launcher,text = "Jouer",command = jouer)                 
 bouton_IA = Button(launcher,text = "IA vs IA",command = jouer)
 bouton_continuer = Button(launcher, text = "continuer")
-
 
 
 zone_txt = Label(launcher, text = "Bonne chance !",bg="sky blue")
@@ -274,12 +241,10 @@ nombre_carte_j2 = Label(launcher)
 affgagnant = Label(launcher, text = partie, bg = "sky blue")
 
 
-
 bouton1.grid(row = 3 , column = 3)
 bouton_IA.grid(row = 3 , column = 2)
 bouton_jouer.grid(row = 3 , column = 1)
 zone_txt.grid(row = 1, column = 2)
-
 
 
 launcher.mainloop()
