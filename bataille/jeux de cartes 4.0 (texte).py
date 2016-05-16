@@ -24,9 +24,13 @@ def creation():
     """jeu = [(x, y) for y in couleurs for x in valeurs]"""
     return jeu
 
+
+
 def choix(liste):
     a = randrange(len(liste))
     return liste[a]
+
+
 
 def melanger(liste):
     """Fonction qui prend un jeu de cartes et le melange"""
@@ -38,9 +42,12 @@ def melanger(liste):
     return listeMelangee
 
 
+
 def distribuerj1(liste):
     jeu1 = jeu[0:26]
     return jeu1
+
+
 
 def distribuerj2(liste):
     jeu2 = jeu[26:52]
@@ -52,8 +59,6 @@ def tirer(jeu):
     carte = jeu[0]
     jeu.remove(jeu[0])
     return carte
-
-
 
 
 
@@ -162,19 +167,9 @@ def partie():
         if carte1[0] > carte2[0]:
             jeu1.append(carte1)
             jeu1.append(carte2)
-            if carte1[0] in traduction:
-                carte_traduite1 = (traduction.get(carte1[0]), carte1[1])
-            else:
-                carte_traduite1 = carte1
-            if carte2[0] in traduction:
-                carte_traduite2 = (traduction.get(carte2[0]), carte2[1])
-            else:
-                carte_traduite2 = carte2
-            print(carte_traduite1[0], "de", carte_traduite1[1], "vs", carte_traduite2[0], "de", carte_traduite2[1])
-            print("le joueur 1 gagne !")
         elif carte2[0] > carte1[0]:
-            jeu2.append(carte2)
             jeu2.append(carte1)
+            jeu2.append(carte2)
             if carte1[0] in traduction:
                 carte_traduite1 = (traduction.get(carte1[0]), carte1[1])
             else:

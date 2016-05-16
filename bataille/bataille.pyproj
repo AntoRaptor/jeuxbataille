@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>ca28f630-6509-4b7e-9641-a33fb27f9450</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>jeux de cartes 4.2.py</StartupFile>
+    <StartupFile>jeux de cartes 4.0 (texte).py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -29,7 +29,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Dossier ISN.odt" />
+    <Content Include="dossier ISN Antonin Fontaine.pdf" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
