@@ -1,7 +1,4 @@
-from tkinter import *
 from random import *
-
-main = Tk()
 
 
 """Definition"""
@@ -27,22 +24,26 @@ def creation():
     """jeu = [(x, y) for y in couleurs for x in valeurs]"""
     return jeu
 
+def choix(liste):
+    a = randrange(len(liste))
+    return liste[a]
+
 def melanger(liste):
     """Fonction qui prend un jeu de cartes et le melange"""
     listeMelangee = []
     while len(liste) != 0:
-        carte = choice(liste)
+        carte = choix(liste)
         listeMelangee.append(carte)
         liste.remove(carte)
     return listeMelangee
 
 
 def distribuerj1(liste):
-    jeu1 = liste[0:26]
+    jeu1 = jeu[0:26]
     return jeu1
 
 def distribuerj2(liste):
-    jeu2 = liste[26:52]
+    jeu2 = jeu[26:52]
     return jeu2
 
 
@@ -56,7 +57,7 @@ def tirer(jeu):
 
 
 
-def bataille(jeu1, jeu2, carte1, carte2, reste, nombre_de_batailles):
+def bataille(carte1, carte2, reste, nombre_de_batailles, traduction):
     print("BATAILLE !!!")
     nombre_de_batailles += 1
 
@@ -96,19 +97,42 @@ def bataille(jeu1, jeu2, carte1, carte2, reste, nombre_de_batailles):
 
     if len(jeu1) != 0 and len(jeu2) != 0:
         if carte1[0] == carte2[0]:
-                bataille(jeu1, jeu2, carte1, carte2, reste, nombre_de_batailles)
+                bataille(carte1, carte2, reste, nombre_de_batailles, traduction)
         
         elif carte1[0] > carte2[0]:
+            if carte1[0] in traduction:
+                carte_traduite1 = (traduction.get(carte1[0]), carte1[1])
+            else:
+                carte_traduite1 = carte1
+            if carte2[0] in traduction:
+                carte_traduite2 = (traduction.get(carte2[0]), carte2[1])
+            else:
+                carte_traduite2 = carte2
+            print(carte_traduite1[0], "de", carte_traduite1[1], "vs", carte_traduite2[0], "de", carte_traduite2[1])
+            print("le joueur 1 gagne la bataille !")
+
             for k in range(len(reste)):
                 jeu1.append(reste[k])
             jeu1.append(carte1)
             jeu1.append(carte2)
         
         else:
+            if carte1[0] in traduction:
+                carte_traduite1 = (traduction.get(carte1[0]), carte1[1])
+            else:
+                carte_traduite1 = carte1
+            if carte2[0] in traduction:
+                carte_traduite2 = (traduction.get(carte2[0]), carte2[1])
+            else:
+                carte_traduite2 = carte2
+            print(carte_traduite1[0], "de", carte_traduite1[1], "vs", carte_traduite2[0], "de", carte_traduite2[1])
+            print("le joueur 2 gagne la bataille !")
+
+            
             for l in range(len(reste)):
                 jeu2.append(reste[l])
-            jeu2.append(carte1)
             jeu2.append(carte2)
+            jeu2.append(carte1)
 
     elif len(jeu1) == 0:
         print("Le joueur 2 remporte la partie !")
@@ -120,14 +144,13 @@ def bataille(jeu1, jeu2, carte1, carte2, reste, nombre_de_batailles):
 
 
 
-def partie(jeu1, jeu2):
+def partie():
+    traduction = {11: "Valet", 12: "Dame", 13: "Roi", 14: "As"} # dictionnaire pour la traduction.
     reste = []
     nombre_de_tours = 0
     nombre_de_batailles = 0
     # Tant qu'il reste des cartes :
     while len(jeu1) != 0 and len(jeu2) != 0:
-        #print(jeu1)
-        #print(jeu2)
         print("nb de cartes du joueur 1 :", len(jeu1))
         print("nb de cartes du joueur 2 :", len(jeu2))
         # On tire 2 cartes !
@@ -139,20 +162,40 @@ def partie(jeu1, jeu2):
         if carte1[0] > carte2[0]:
             jeu1.append(carte1)
             jeu1.append(carte2)
-            print(carte1, "vs", carte2)
+            if carte1[0] in traduction:
+                carte_traduite1 = (traduction.get(carte1[0]), carte1[1])
+            else:
+                carte_traduite1 = carte1
+            if carte2[0] in traduction:
+                carte_traduite2 = (traduction.get(carte2[0]), carte2[1])
+            else:
+                carte_traduite2 = carte2
+            print(carte_traduite1[0], "de", carte_traduite1[1], "vs", carte_traduite2[0], "de", carte_traduite2[1])
             print("le joueur 1 gagne !")
         elif carte2[0] > carte1[0]:
-            jeu2.append(carte1)
             jeu2.append(carte2)
-            print(carte1, "vs", carte2)
+            jeu2.append(carte1)
+            if carte1[0] in traduction:
+                carte_traduite1 = (traduction.get(carte1[0]), carte1[1])
+            else:
+                carte_traduite1 = carte1
+            if carte2[0] in traduction:
+                carte_traduite2 = (traduction.get(carte2[0]), carte2[1])
+            else:
+                carte_traduite2 = carte2
+            print(carte_traduite1[0], "de", carte_traduite1[1], "vs", carte_traduite2[0], "de", carte_traduite2[1])
             print("le joueur 2 gagne !")
         # Si egalite on appel le fonction bataille() :
         else:
-            bataille(jeu1, jeu2, carte1, carte2, reste, nombre_de_batailles)
+            bataille(carte1, carte2, reste, nombre_de_batailles, traduction)
             reste = []
         nombre_de_tours += 1
         print(nombre_de_tours, "eme tour")
         print(len(jeu1))
+    if len(jeu1) == 0:
+        print("Le joueur 2 remporte la partie")
+    else:
+        print("Le joueur 1 remporte la partie")
     print("partie terminee en {0} tours avec {1} batailles".format(str(nombre_de_tours), str(nombre_de_batailles)))
     input()
 
@@ -160,17 +203,13 @@ def partie(jeu1, jeu2):
 
 
 """Programme principale"""
-def jouer():
-    jeu = creation()
+jeu = creation()
 
-    jeu = melanger(jeu)
-    #jeutest1 = [(3), (5), (6) , (14), (12), (14)]
-    #jeutest2 = [(3), (5), (6) , (13), (11), (13)]
-    jeu1 = distribuerj1(jeu)
-    jeu2 = distribuerj2(jeu)
-    partie(jeu1, jeu2)
+jeu = melanger(jeu)
+#jeutest1 = [(3), (5), (6) , (14), (12), (14)]
+#jeutest2 = [(3), (5), (6) , (13), (11), (13)]
+jeu1 = distribuerj1(jeu)
+jeu2 = distribuerj2(jeu)
+partie()
 
 
-bouton1 = Button(main, command=jouer)
-bouton1.pack()
-main.mainloop()
