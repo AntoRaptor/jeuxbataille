@@ -167,9 +167,19 @@ def partie():
         if carte1[0] > carte2[0]:
             jeu1.append(carte1)
             jeu1.append(carte2)
+            if carte1[0] in traduction:
+                carte_traduite1 = (traduction.get(carte1[0]), carte1[1])
+            else:
+                carte_traduite1 = carte1
+            if carte2[0] in traduction:
+                carte_traduite2 = (traduction.get(carte2[0]), carte2[1])
+            else:
+                carte_traduite2 = carte2
+            print(carte_traduite1[0], "de", carte_traduite1[1], "vs", carte_traduite2[0], "de", carte_traduite2[1])
+            print("le joueur 1 gagne !")
         elif carte2[0] > carte1[0]:
-            jeu2.append(carte1)
             jeu2.append(carte2)
+            jeu2.append(carte1)
             if carte1[0] in traduction:
                 carte_traduite1 = (traduction.get(carte1[0]), carte1[1])
             else:
